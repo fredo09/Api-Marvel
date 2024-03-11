@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import { HomePage } from './pages';
+import { BASE_URL_API, KEY_PUBLIC_API, VERSION_API, HASH} from './utils/constants'
+import axios from 'axios';
 
 function App() {
+
+  useEffect(() => {
+    axios.get(`${BASE_URL_API}/${VERSION_API}/public/comics?ts=1000&apikey=${KEY_PUBLIC_API}&hash=${HASH}`)
+      .then((response) => {
+        console.log("🚀 ~ .then ~ response:", response)
+      })
+      .catch((err) => {
+        console.log("🚀 ~ useEffect ~ err:", err)
+      })
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Demos Api 🚀 </h1>
+
+      <HomePage/>
+    </>
   );
 }
 
