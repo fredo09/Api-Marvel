@@ -5,11 +5,10 @@ import { BASE_URL_API, KEY_PUBLIC_API, VERSION_API, HASH} from './utils/constant
 import axios from 'axios';
 
 function App() {
-
   useEffect(() => {
     axios.get(`${BASE_URL_API}/${VERSION_API}/public/comics?ts=1000&apikey=${KEY_PUBLIC_API}&hash=${HASH}`)
-      .then((response) => {
-        console.log("🚀 ~ .then ~ response:", response)
+      .then(({ data }) => {
+        console.log("🚀 ~ .then ~ response:", data.data.results)
       })
       .catch((err) => {
         console.log("🚀 ~ useEffect ~ err:", err)
@@ -20,7 +19,7 @@ function App() {
     <>
       <h1>Demos Api 🚀 </h1>
 
-      <HomePage/>
+      <HomePage />
     </>
   );
 }
